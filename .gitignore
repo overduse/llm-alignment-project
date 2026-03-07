@@ -1,4 +1,5 @@
 .DS_Store
+PROJECT*
 
 __pycache__/
 *.py[cod]

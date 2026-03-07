@@ -1,0 +1,10 @@
+# vLLM inference env. Install PyTorch 2.4 (CUDA 12.1) first, then this file.
+#
+# Setup:
+#   conda create -n vllm python=3.12 -y && conda activate vllm
+#   pip install torch==2.4.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+#   pip install -r requirements-vllm.txt
+
+vllm>=0.6.0
+ray
+# Optional (recommended on H100): pip install flash-attn --no-build-isolation
