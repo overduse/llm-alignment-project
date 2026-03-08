@@ -90,6 +90,9 @@ def run(
             gen_kw["temperature"] = temperature
         with torch.no_grad():
             out = model.generate(**inputs, **gen_kw)
+        if i == 0 and device == "cuda" and torch.cuda.is_available():
+            mem_gb = torch.cuda.memory_allocated() / (1024**3)
+            print(f"  [Inference on GPU, allocated: {mem_gb:.2f} GB]")
         response = tokenizer.decode(out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
         results.append({"instruction": instruction, "output": response.strip()})
         if (i + 1) % 10 == 0 or (i + 1) == len(prompts):
