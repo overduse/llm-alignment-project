@@ -7,6 +7,9 @@ import os
 import json
 from tqdm import tqdm
 
+# uncomment the line below to use the hf-mirror
+# os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
+
 RAW_FILENAME = "magicoder_110k.jsonl"
 OUTPUT_FILENAME = "clean_seed_prompts.jsonl"
 

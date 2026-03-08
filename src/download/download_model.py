@@ -35,6 +35,7 @@ if __name__ == "__main__":
     models_to_download = [
         "qwen/Qwen3-Next-80B-A3B-Instruct",
         "qwen/Qwen3-8B",
+        "qwen/Qwen3-8B-Base",
     ]
     for model in models_to_download:
         download_qwen_model(model)

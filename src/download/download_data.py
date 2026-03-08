@@ -6,6 +6,9 @@ import os
 from datasets import load_dataset
 
 
+# uncomment the line below to use the hf-mirror
+# os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
+
 def _project_root():
     """Project root (parent of src/). Script lives in src/download/."""
     return os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
