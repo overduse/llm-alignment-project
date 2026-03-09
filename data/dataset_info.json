@@ -1,0 +1,25 @@
+{
+  "sft_pairs": {
+    "file_name": "generated/sft_pairs.jsonl",
+    "columns": {
+      "prompt": "instruction",
+      "response": "output"
+    }
+  },
+  "sft_20k": {
+    "file_name": "sft_pairs_20k.jsonl",
+    "columns": {
+      "prompt": "instruction",
+      "response": "output"
+    }
+  },
+  "dpo_pairs": {
+    "file_name": "generated/dpo_pairs.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  }
+}

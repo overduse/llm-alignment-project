@@ -1,0 +1,43 @@
+# LLaMA Factory full-parameter SFT for Qwen3-8B.
+# Dataset: data/generated/sft_pairs.jsonl (registered in data/dataset_info.json as "sft_pairs").
+# Run from project root:
+#   llamafactory-cli train config/llamafactory/sft_qwen3_full.yaml
+# Or use: ./scripts/run_sft_llamafactory.sh
+
+stage: sft
+do_train: true
+finetuning_type: full
+
+model_name_or_path: models/Qwen3-8B-Base
+dataset: sft_20k
+dataset_dir: data
+template: qwen3
+cutoff_len: 2048
+overwrite_cache: true
+preprocessing_num_workers: 8
+
+output_dir: checkpoints/qwen3-8b-sft
+logging_steps: 10
+save_steps: 500
+save_total_limit: 2
+run_name: "qwen3-8b-sft-20k"
+plot_loss: true
+report_to: tensorboard
+overwrite_output_dir: true
+
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 4
+learning_rate: 2.0e-5
+num_train_epochs: 2.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+bf16: true
+flash_attn: fa2
+gradient_checkpointing: true
+deepspeed: config/llamafactory/ds_z3_config.json
+ddp_timeout: 180000000
+
+val_size: 0.05
+per_device_eval_batch_size: 1
+eval_strategy: steps
+eval_steps: 500

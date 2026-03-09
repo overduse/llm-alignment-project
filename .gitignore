@@ -12,7 +12,11 @@ wheels/
 .venv/
 .env
 
-data/
+data/generated/
+data/processed/
+data/raw/
+data/*.jsonl
+checkpoints/
 models/
 
 *.bin
