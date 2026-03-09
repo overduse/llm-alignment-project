@@ -7,7 +7,7 @@
     }
   },
   "sft_20k": {
-    "file_name": "sft_pairs_20k.jsonl",
+    "file_name": "generated/sft_pairs_20k.jsonl",
     "columns": {
       "prompt": "instruction",
       "response": "output"
