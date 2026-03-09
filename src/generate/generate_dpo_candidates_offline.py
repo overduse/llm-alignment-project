@@ -81,18 +81,23 @@ def main():
         "step-by-step explanation, comments in code, and handle edge cases. Output the final code in a code block."
     )
 
-    formatted_prompts = []
-    for p in prompts:
-        messages = [
-            {"role": "system", "content": DEFAULT_SYSTEM_PROMPT},
-            {"role": "user", "content": p},
-        ]
-        text = tokenizer.apply_chat_template(
-            messages,
-            tokenize=False,
-            add_generation_prompt=True,
-        )
-        formatted_prompts.append(text)
+    # Temporary fallback if chat template fails
+    try:
+        formatted_prompts = []
+        for p in prompts:
+            messages = [
+                {"role": "system", "content": DEFAULT_SYSTEM_PROMPT},
+                {"role": "user", "content": p},
+            ]
+            text = tokenizer.apply_chat_template(
+                messages,
+                tokenize=False,
+                add_generation_prompt=True,
+            )
+            formatted_prompts.append(text)
+    except Exception as e:
+        print(f"Warning: Failed to apply chat template ({e}). Using raw prompts instead.")
+        formatted_prompts = [f"<|im_start|>system\n{DEFAULT_SYSTEM_PROMPT}<|im_end|>\n<|im_start|>user\n{p}<|im_end|>\n<|im_start|>assistant\n" for p in prompts]
 
     # Sampling settings for generation (generate multiple sequences at once)
     sampling_params = SamplingParams(
